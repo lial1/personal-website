@@ -1,0 +1,81 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+  --sand: #ffffff;
+  --ink: #1f1e1b;
+  --offblack: #8a847e;
+  --muted: #5e5b53;
+  --card: #fbfaf7;
+  --line: #e2ddd4;
+  --accent: #c36a3f;
+  --accent-2: #3a6351;
+  --link: #0f3d34;
+  --muted-red: #a1524b;
+}
+
+@theme inline {
+  --color-sand: var(--sand);
+  --color-ink: var(--ink);
+  --color-offblack: var(--offblack);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-link: var(--link);
+  --color-muted-red: var(--muted-red);
+  --font-sans: var(--font-body);
+}
+
+body {
+  background: var(--sand);
+  color: var(--ink);
+  font-family: var(--font-body), sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+}
+
+a {
+  color: inherit;
+}
+
+.nav-link {
+  color: var(--offblack);
+  transition: color 200ms ease-out, text-decoration-color 240ms ease-out;
+  text-decoration-line: none;
+}
+
+.nav-link:hover {
+  color: var(--ink);
+}
+
+.nav-link[data-active="true"] {
+  color: var(--ink);
+}
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background: rgba(31, 30, 27, 0.55);
+  transform: scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: opacity 240ms ease-out, transform 240ms ease-out;
+}
+
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
