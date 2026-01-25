@@ -21,6 +21,14 @@ export default function AboutPage() {
           also partner with teams on structured reporting, documentation, and
           stakeholder updates.
         </p>
+        <a
+          href="/resume.pdf"
+          className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.3em] text-muted underline decoration-accent-2 decoration-2 underline-offset-4"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Resume PDF
+        </a>
       </div>
 
       <div className="space-y-6">
@@ -123,7 +131,7 @@ export default function AboutPage() {
               Focus: Applied Generative AI in Interdisciplinary Projects.
             </p>
           </div>
-          <div className="border-l border-line pl-6">
+          <div className="border-l border-muted-red/60 pl-6">
             <p className="text-xs uppercase tracking-[0.3em] text-muted">
               Sep 2020 — Jul 2023
             </p>

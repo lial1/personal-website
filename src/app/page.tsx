@@ -1,3 +1,6 @@
+import ContactSection from "@/components/ContactSection";
+import Image from "next/image";
+
 export default function Home() {
   const projects = [
     {
@@ -6,24 +9,24 @@ export default function Home() {
         "Monte Carlo framework to simulate downside scenarios and quantify tail risk across changing assumptions.",
       tags: ["Python", "Jupyter", "Risk Analysis"],
       link: "https://github.com/lial1/Option-Pricing-Stochastic-Analysis",
+      image: "/project-options.png",
+      imageClassName: "scale-105",
     },
     {
       title: "Fourier Fund Financial Model Suite",
       summary:
         "Excel-based dashboards tracking financial performance, assumptions, and recurring reporting across projects.",
       tags: ["Excel", "Financial Analysis", "Reporting"],
+      image: "/comps-table-omc.png",
+      imageClassName: "object-left object-top",
     },
     {
-      title: "BBL Metrics & Governance Dashboards",
+      title: "Product & Data Interface — Jag International Trim",
       summary:
-        "Figma and spreadsheet system used to surface protocol metrics, milestones, and governance risks.",
-      tags: ["Figma", "Spreadsheets", "Stakeholder Updates"],
-    },
-    {
-      title: "Jag International Data Consolidation",
-      summary:
-        "Standardized and cleaned legacy datasets to improve reporting accuracy and operational efficiency by 30%.",
-      tags: ["Data Cleaning", "Excel", "Operations"],
+        "Led end-to-end design of an internal data dashboard, combining UI development with data cleaning to streamline reporting and decision-making.",
+      tags: ["Dashboard Design", "Data Cleaning", "Reporting"],
+      link: "https://jagtrim.com/",
+      video: "/website-demo.mov",
     },
   ];
 
@@ -45,6 +48,27 @@ export default function Home() {
           <article key={project.title} className="space-y-5">
             <div className="overflow-hidden rounded-[26px] border border-line bg-card">
               <div className="relative aspect-video w-full bg-gradient-to-br from-white via-white to-sand">
+                {project.video ? (
+                  <video
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  >
+                    <source src={project.video} type="video/mp4" />
+                  </video>
+                ) : project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    fill
+                    className={`object-cover ${project.imageClassName ?? ""}`}
+                    sizes="(min-width: 768px) 720px, 100vw"
+                    priority={project.title === "Option Pricing & Stochastic Analysis"}
+                  />
+                ) : null}
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(0,0,0,0.06),_transparent_60%)]" />
               </div>
             </div>
@@ -87,4 +111,3 @@ export default function Home() {
     </section>
   );
 }
-import ContactSection from "@/components/ContactSection";
