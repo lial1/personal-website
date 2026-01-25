@@ -26,7 +26,7 @@ export default function Home() {
         "Led end-to-end design of an internal data dashboard, combining UI development with data cleaning to streamline reporting and decision-making.",
       tags: ["Dashboard Design", "Data Cleaning", "Reporting"],
       link: "https://jagtrim.com/",
-      video: "/website-demo.mov",
+      video: "/website-demo.mp4",
     },
   ];
 
