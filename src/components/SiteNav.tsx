@@ -12,13 +12,9 @@ const links = [
 export default function SiteNav() {
   const [active, setActive] = useState("about");
   const [isVisible, setIsVisible] = useState(true);
+  const [isEngaged, setIsEngaged] = useState(false);
 
   useEffect(() => {
-    const currentHash = window.location.hash.replace("#", "");
-    if (currentHash) {
-      setActive(currentHash);
-    }
-
     const sections = links
       .map((link) => document.getElementById(link.id))
       .filter((section): section is HTMLElement => Boolean(section));
@@ -48,18 +44,37 @@ export default function SiteNav() {
 
     updateActive();
     window.addEventListener("scroll", updateActive, { passive: true });
-    window.addEventListener("hashchange", updateActive);
 
     return () => {
       window.removeEventListener("scroll", updateActive);
-      window.removeEventListener("hashchange", updateActive);
     };
   }, []);
+
+  const handleNavClick = (id: string) => {
+    const target = document.getElementById(id);
+    if (!target) {
+      return;
+    }
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.replaceState({}, "", window.location.pathname);
+  };
 
   useEffect(() => {
     let lastY = window.scrollY;
     let ticking = false;
     let mouseTimeout: number | null = null;
+    let engageTimeout: number | null = null;
+
+    const setEngaged = () => {
+      setIsEngaged(true);
+      if (engageTimeout) {
+        window.clearTimeout(engageTimeout);
+      }
+      engageTimeout = window.setTimeout(() => {
+        setIsEngaged(false);
+        engageTimeout = null;
+      }, 1800);
+    };
 
     const onScroll = () => {
       if (ticking) {
@@ -82,6 +97,8 @@ export default function SiteNav() {
         lastY = currentY;
         ticking = false;
       });
+
+      setEngaged();
     };
 
     const onMouseMove = (event: MouseEvent) => {
@@ -94,6 +111,8 @@ export default function SiteNav() {
           mouseTimeout = null;
         }, 250);
       }
+
+      setEngaged();
     };
 
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -104,23 +123,31 @@ export default function SiteNav() {
       if (mouseTimeout) {
         window.clearTimeout(mouseTimeout);
       }
+      if (engageTimeout) {
+        window.clearTimeout(engageTimeout);
+      }
     };
   }, []);
 
   return (
-    <header className="site-header" data-visible={isVisible}>
+    <header
+      className="site-header"
+      data-visible={isVisible}
+      data-engaged={isEngaged}
+    >
       <div className="site-header-inner">
         <nav className="flex items-center justify-end text-xs uppercase tracking-[0.3em]">
           <div className="nav-stack flex items-center gap-7">
             {links.map((link) => (
-              <a
+              <button
                 key={link.id}
-                href={link.href}
+                type="button"
+                onClick={() => handleNavClick(link.id)}
                 data-active={active === link.id}
                 className="nav-link"
               >
                 {link.label}
-              </a>
+              </button>
             ))}
           </div>
         </nav>

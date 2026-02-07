@@ -1,3 +1,4 @@
+import BackToTopButton from "@/components/BackToTopButton";
 import ContactSection from "@/components/ContactSection";
 import TimelineItem from "@/components/TimelineItem";
 import Image from "next/image";
@@ -417,12 +418,7 @@ export default function Home() {
           </div>
           <div className="mt-8 flex flex-col items-start gap-4 border-t border-line/60 pt-6 text-xs uppercase tracking-[0.3em] text-muted sm:flex-row sm:items-center sm:justify-between">
             <span>Last updated: Feb 2026</span>
-            <a
-              href="#about"
-              className="underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-ink"
-            >
-              Back to top ↑
-            </a>
+            <BackToTopButton />
           </div>
         </footer>
       </section>
