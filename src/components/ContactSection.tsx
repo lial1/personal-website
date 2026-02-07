@@ -14,7 +14,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="border-t border-line pt-16 pb-16">
+    <section className="border-t border-line pt-16 pb-28">
       <div className="max-w-2xl text-left">
         <p className="text-xs uppercase tracking-[0.3em] text-muted">Contact</p>
         <h2 className="mt-3 font-display text-3xl text-ink">Contact Me</h2>
@@ -49,8 +49,8 @@ export default function ContactSection() {
           onChange={(event) => setMessage(event.target.value)}
           placeholder="Your message"
           required
-          rows={7}
-          className="min-h-[200px] rounded-xl border border-line bg-[#f7f7f7] px-4 py-3 text-sm text-ink outline-none transition focus:border-accent"
+          rows={8}
+          className="min-h-[230px] rounded-xl border border-line bg-[#f7f7f7] px-4 py-3 text-sm text-ink outline-none transition focus:border-accent"
         />
         <button
           type="submit"

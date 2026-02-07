@@ -127,3 +127,29 @@ a {
   opacity: 1;
   transform: scaleX(1);
 }
+
+.timeline-item {
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 0;
+  background: rgba(161, 82, 75, 0.6);
+  transition: height 1400ms ease;
+}
+
+.timeline-item.is-visible::before {
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-item::before {
+    transition: none;
+    height: 100%;
+  }
+}

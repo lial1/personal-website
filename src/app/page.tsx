@@ -1,4 +1,5 @@
 import ContactSection from "@/components/ContactSection";
+import TimelineItem from "@/components/TimelineItem";
 import Image from "next/image";
 
 export default function Home() {
@@ -64,7 +65,7 @@ export default function Home() {
         <div className="space-y-6">
           <h3 className="font-display text-2xl text-ink">Experience</h3>
           <div className="space-y-8">
-            <div className="border-l border-muted-red/60 pl-6">
+            <TimelineItem className="pl-6">
               <p className="text-xs uppercase tracking-[0.3em] text-muted">
                 Oct 2025 — Present
               </p>
@@ -83,8 +84,8 @@ export default function Home() {
                 Financial statement review, Excel model maintenance, and weekly
                 meeting materials for a student-run fund.
               </p>
-            </div>
-            <div className="border-l border-muted-red/60 pl-6">
+            </TimelineItem>
+            <TimelineItem className="pl-6">
               <p className="text-xs uppercase tracking-[0.3em] text-muted">
                 Aug 2025 — Dec 2025
               </p>
@@ -95,8 +96,8 @@ export default function Home() {
                 Coursework grading, schedule coordination, and student support
                 for AMS 210: Linear Algebra.
               </p>
-            </div>
-            <div className="border-l border-muted-red/60 pl-6">
+            </TimelineItem>
+            <TimelineItem className="pl-6">
               <p className="text-xs uppercase tracking-[0.3em] text-muted">
                 Jan 2025 — May 2025
               </p>
@@ -107,8 +108,8 @@ export default function Home() {
                 Project timelines, stakeholder reporting, and dashboard upkeep
                 in Figma and spreadsheets.
               </p>
-            </div>
-            <div className="border-l border-muted-red/60 pl-6">
+            </TimelineItem>
+            <TimelineItem className="pl-6">
               <p className="text-xs uppercase tracking-[0.3em] text-muted">
                 Jun 2024 — Sept 2024
               </p>
@@ -119,8 +120,8 @@ export default function Home() {
                 Cleaned and consolidated legacy datasets to improve reporting
                 accuracy and consistency.
               </p>
-            </div>
-            <div className="border-l border-muted-red/60 pl-6">
+            </TimelineItem>
+            <TimelineItem className="pl-6">
               <p className="text-xs uppercase tracking-[0.3em] text-muted">
                 Apr 2024 — May 2025
               </p>
@@ -131,14 +132,14 @@ export default function Home() {
                 On-site coordination and customer communication for high-volume
                 hospitality events.
               </p>
-            </div>
+            </TimelineItem>
           </div>
         </div>
 
         <div className="space-y-6">
           <h3 className="font-display text-2xl text-ink">Education</h3>
           <div className="space-y-8">
-            <div className="border-l border-muted-red/60 pl-6">
+            <TimelineItem className="pl-6">
               <p className="text-xs uppercase tracking-[0.3em] text-muted">
                 Sep 2023 — May 2027
               </p>
@@ -163,8 +164,8 @@ export default function Home() {
                 Relevant coursework: Financial Accounting, Managerial Finance,
                 Probability Theory, Data Analysis, Statistics, Linear Algebra.
               </p>
-            </div>
-            <div className="border-l border-muted-red/60 pl-6">
+            </TimelineItem>
+            <TimelineItem className="pl-6">
               <p className="text-xs uppercase tracking-[0.3em] text-muted">
                 Jun 2025 — Jul 2025
               </p>
@@ -186,8 +187,8 @@ export default function Home() {
               <p className="mt-2 text-sm leading-6 text-muted">
                 Focus: Applied Generative AI in Interdisciplinary Projects.
               </p>
-            </div>
-            <div className="border-l border-muted-red/60 pl-6">
+            </TimelineItem>
+            <TimelineItem className="pl-6">
               <p className="text-xs uppercase tracking-[0.3em] text-muted">
                 Sep 2020 — Jul 2023
               </p>
@@ -210,7 +211,7 @@ export default function Home() {
                 Activities: Student Organization, ARISTA National Honor Society,
                 Key Club, Track Team.
               </p>
-            </div>
+            </TimelineItem>
           </div>
         </div>
 
@@ -355,8 +356,9 @@ export default function Home() {
         <div />
       </section>
 
-      <section id="contact" className="scroll-mt-[-12rem]">
-        <footer className="mt-4 border-t border-line pt-10">
+      <section id="contact" className="scroll-mt-[-10em]">
+        <ContactSection />
+        <footer className="mt-16 border-t border-line pt-10">
           <div className="grid gap-8 sm:grid-cols-3">
             <div className="space-y-3">
               <p className="font-display text-4xl text-ink">Lia Li</p>
@@ -364,13 +366,7 @@ export default function Home() {
                 Applied Math & Statistics · Stony Brook University
               </p>
             </div>
-            <div className="space-y-2 text-sm text-muted">
-              <p className="uppercase tracking-[0.3em] text-xs text-muted">
-                Contact
-              </p>
-              <p>liali5385work@gmail.com</p>
-              <p>Queens, NY</p>
-            </div>
+            <div />
             <div className="space-y-2 text-sm text-muted sm:text-right">
               <p className="uppercase tracking-[0.3em] text-xs text-muted">
                 Links
