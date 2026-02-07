@@ -27,9 +27,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${display.variable} ${body.variable} antialiased`}>
         <div className="min-h-screen bg-sand text-ink">
-          <div className="mx-auto flex w-full max-w-3xl flex-col px-6 pb-24 pt-10 sm:px-8">
-            <SiteNav />
-            <main className="mt-16">{children}</main>
+          <SiteNav />
+          <div className="mx-auto flex w-full max-w-3xl flex-col px-6 pb-24 pt-16 sm:px-8">
+            <main className="mt-6">{children}</main>
           </div>
         </div>
       </body>

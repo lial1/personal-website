@@ -3,57 +3,62 @@
 import { useState } from "react";
 
 export default function ContactSection() {
-  const [copied, setCopied] = useState(false);
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText("liali5385work@gmail.com");
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 1600);
-    } catch {
-      setCopied(false);
-    }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const subject = encodeURIComponent("Website contact");
+    const body = encodeURIComponent(`From: ${email}\n\n${message}`);
+    window.location.href = `mailto:liali5385work@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
-    <section className="border-t border-line pt-10">
-      <h2 className="font-display text-2xl text-ink">Contact</h2>
-      <ul className="mt-3 space-y-2 text-base text-muted">
-        <li className="flex flex-wrap items-center gap-2">
-          <span aria-hidden>•</span>
-          <span>Reach me at</span>
-          <span className="inline-flex items-center gap-2">
-            <button
-              type="button"
-              onClick={handleCopy}
-              className="rounded bg-[#f2f2f2] px-2 py-1 text-sm text-ink underline decoration-transparent decoration-2 underline-offset-2 transition hover:decoration-ink"
-              aria-label="Copy email address to clipboard"
-            >
-              liali5385work@gmail.com
-            </button>
-            <span
-              className={`rounded-full border border-line px-2 py-0.5 text-[0.6rem] uppercase tracking-[0.25em] text-link transition-opacity ${
-                copied ? "opacity-100" : "opacity-0"
-              }`}
-              aria-hidden={!copied}
-            >
-              Copied
-            </span>
-          </span>
-        </li>
-        <li className="flex flex-wrap items-center gap-2">
-          <span aria-hidden>•</span>
-          <span>Connect with me on</span>
+    <section className="border-t border-line pt-16 pb-16">
+      <div className="max-w-2xl text-left">
+        <p className="text-xs uppercase tracking-[0.3em] text-muted">Contact</p>
+        <h2 className="mt-3 font-display text-3xl text-ink">Contact Me</h2>
+        <p className="mt-3 text-sm text-muted">
+          Feel free to contact me at{" "}
           <a
+            href="mailto:liali5385work@gmail.com"
             className="underline decoration-accent-2 decoration-2 underline-offset-4"
-            href="https://www.linkedin.com/in/liali1"
-            target="_blank"
-            rel="noreferrer"
           >
-            LinkedIn
-          </a>
-        </li>
-      </ul>
+            liali5385work@gmail.com
+          </a>{" "}
+          or submit the form below.
+        </p>
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="mt-10 flex max-w-2xl flex-col gap-4"
+      >
+        <input
+          type="email"
+          name="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="Email"
+          required
+          className="rounded-xl border border-line bg-[#f7f7f7] px-4 py-3 text-sm text-ink outline-none transition focus:border-accent"
+        />
+        <textarea
+          name="message"
+          value={message}
+          onChange={(event) => setMessage(event.target.value)}
+          placeholder="Your message"
+          required
+          rows={7}
+          className="min-h-[200px] rounded-xl border border-line bg-[#f7f7f7] px-4 py-3 text-sm text-ink outline-none transition focus:border-accent"
+        />
+        <button
+          type="submit"
+          className="mt-2 w-fit rounded-full border border-[#0b1b2b] bg-[#0b1b2b] px-8 py-3 text-sm font-semibold text-white shadow-[0_10px_20px_rgba(12,24,44,0.18)] transition hover:-translate-y-0.5 hover:shadow-[0_14px_24px_rgba(12,24,44,0.22)]"
+        >
+          Send message
+        </button>
+      </form>
     </section>
   );
 }
