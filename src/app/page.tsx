@@ -42,7 +42,7 @@ export default function Home() {
           </h2>
           <p className="text-sm italic text-muted-red">Student, Queens, NY</p>
           <p className="max-w-2xl text-[1.02rem] leading-7 text-muted">
-            I am a junior Applied Mathematics and Statistics student at Stony
+            I am a senior Applied Mathematics and Statistics student at Stony
             Brook University with a minor in Electrical Engineering. I work on
             finance, reporting, and operational analysis that helps teams make
             faster, more informed decisions.
