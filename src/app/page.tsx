@@ -48,7 +48,8 @@ export default function Home() {
             faster, more informed decisions.
           </p>
           <p className="max-w-2xl text-[1.02rem] leading-7 text-muted">
-            Recently, I have supported the Fourier Fund as a Finance Analyst,
+            Recently, I have supported the Fourier Fund as a Senior Financial
+            Analyst,
             building models and summaries for a 30+ member student-run fund. I
             also partner with teams on structured reporting, documentation, and
             stakeholder updates.
@@ -71,7 +72,7 @@ export default function Home() {
                 Oct 2025 — Present
               </p>
               <h4 className="mt-2 text-base font-semibold text-ink">
-                Finance Analyst ·{" "}
+                Senior Financial Analyst ·{" "}
                 <a
                   href="https://sbuinvestmentclub.vercel.app/aboutff.html"
                   target="_blank"
@@ -162,8 +163,8 @@ export default function Home() {
               </p>
               <p className="mt-2 text-sm leading-6 text-muted">GPA 3.5/4.0.</p>
               <p className="mt-2 text-sm leading-6 text-muted">
-                Relevant coursework: Financial Accounting, Managerial Finance,
-                Probability Theory, Data Analysis, Statistics, Linear Algebra.
+                Relevant coursework: Probability Theory, Data Analysis,
+                Statistics, Linear Algebra.
               </p>
             </TimelineItem>
             <TimelineItem className="pl-6">
