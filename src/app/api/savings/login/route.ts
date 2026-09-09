@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { verifyPassword } from "@/lib/savings/password";
+import { getPasswordHash, verifyPassword } from "@/lib/savings/password";
 import { SESSION_COOKIE, SESSION_MAX_AGE, signSession } from "@/lib/savings/session";
 import {
   clearAttempts,
@@ -29,7 +29,7 @@ export async function POST(req: Request) {
     // fall through to the generic failure below
   }
 
-  if (!verifyPassword(password, process.env.SAVINGS_PASSWORD_HASH)) {
+  if (!verifyPassword(password, await getPasswordHash())) {
     await recordFailedAttempt(ip);
     // Deliberately vague: never distinguish "wrong password" from "not configured".
     return NextResponse.json({ error: "Incorrect password." }, { status: 401 });
