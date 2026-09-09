@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 const TABS = [
+  { href: "/", label: "Home" },
   { href: "/savings", label: "Dashboard" },
   { href: "/savings/portfolio", label: "Portfolio" },
   { href: "/savings/income", label: "Income" },
