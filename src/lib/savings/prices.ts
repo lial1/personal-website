@@ -58,7 +58,9 @@ export async function heldTickers(): Promise<string[]> {
 
 export async function refreshPrices(): Promise<RefreshReport> {
   const tickers = await heldTickers();
-  const token = process.env.FINNHUB_API_KEY;
+  // Accepts either name: the Vercel var was created as FINNHUB, the canonical
+  // name is FINNHUB_API_KEY. Whichever is set wins.
+  const token = process.env.FINNHUB_API_KEY || process.env.FINNHUB;
 
   const report: RefreshReport = { updated: [], failed: [] };
   const quotes: Quote[] = [];
@@ -68,7 +70,7 @@ export async function refreshPrices(): Promise<RefreshReport> {
       if (CRYPTO[ticker]) {
         quotes.push(await fetchCrypto(ticker, CRYPTO[ticker]));
       } else if (!token) {
-        throw new Error("FINNHUB_API_KEY is not set");
+        throw new Error("No Finnhub key set (FINNHUB_API_KEY or FINNHUB)");
       } else {
         quotes.push(await fetchEquity(ticker, token));
       }
