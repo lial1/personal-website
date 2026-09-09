@@ -6,6 +6,7 @@ import { Card, Note, SectionTitle } from "@/components/savings/ui";
 import NetWorthTrend from "@/components/savings/NetWorthTrend";
 import RefreshPrices from "@/components/savings/RefreshPrices";
 import MilestoneTarget from "@/components/savings/MilestoneTarget";
+import ChangePassword from "@/components/savings/ChangePassword";
 
 export const dynamic = "force-dynamic";
 
@@ -155,6 +156,11 @@ export default async function Dashboard() {
             <dd className="font-display text-xl text-ink">{usd(fy.net)}</dd>
           </div>
         </dl>
+      </Card>
+
+      <Card>
+        <SectionTitle>Password</SectionTitle>
+        <ChangePassword />
       </Card>
 
       <p className="flex flex-wrap items-center gap-3 text-xs text-muted">
