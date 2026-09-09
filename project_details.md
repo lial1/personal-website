@@ -2,7 +2,7 @@
 
 ## Overview
 - Purpose: Personal website built with Next.js + React
-- Routes: `/` (projects), `/about`, `/extras`
+- Routes: `/` (projects), `/about`, `/extras`, `/savings` (private, gated)
 - Status: Projects/about content aligned with resume
 
 ## Stack
@@ -18,6 +18,11 @@
 - `src/app/about/page.tsx`: About page
 - `src/app/extras/page.tsx`: Extras placeholder
 - `src/app/globals.css`: Theme tokens and base styles
+- `src/app/savings/**`: Private savings tracker (dashboard, portfolio, income); all data
+  is editable in place, so no code change is needed to correct a figure
+- `src/lib/savings/**`: Auth, derived balances, price fetching, formatting
+- `src/db/**` + `drizzle/`: Neon Postgres schema and migrations
+- `src/proxy.ts`: Gates `/savings/*` and `/api/savings/*`
 
 ## Runbook
 - Install dependencies: `npm install`
@@ -33,3 +38,6 @@
 ## Decisions Log
 - 2025-01-18: Selected TypeScript, Tailwind, App Router, and npm.
 - 2025-01-18: Chose Fraunces + Manrope for typography.
+- 2026-09-09: Added the private savings tracker. Chose a single password over Clerk
+  (one user), and derived balances over stored ones, because the spreadsheet it
+  replaces drifted precisely where totals were typed rather than computed.

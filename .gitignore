@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# savings tracker data - this repo is PUBLIC, no figures may ever be committed
+*.xlsx
+*.csv
+/scripts/*.local.*
+/savings-export*
