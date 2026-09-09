@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
@@ -10,6 +11,7 @@ const links = [
 ];
 
 export default function SiteNav() {
+  const pathname = usePathname();
   const [active, setActive] = useState("about");
   const [isVisible, setIsVisible] = useState(true);
   const [isEngaged, setIsEngaged] = useState(false);
@@ -128,6 +130,10 @@ export default function SiteNav() {
       }
     };
   }, []);
+
+  // These are anchors into the public one-pager; on /savings there is nothing
+  // for them to scroll to, so the bar is dead weight there.
+  if (pathname?.startsWith("/savings")) return null;
 
   return (
     <header

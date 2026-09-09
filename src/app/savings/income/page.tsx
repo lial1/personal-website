@@ -45,10 +45,6 @@ export default async function IncomePage({
 
       <Card>
         <SectionTitle>Add income</SectionTitle>
-        <p className="mb-4 text-sm text-muted">
-          Pick a source and the tax rate fills itself in. Whatever you allocate moves the
-          matching balance straight away, so nothing else needs touching.
-        </p>
         <IncomeForm sources={sources.filter((s) => s.active)} />
       </Card>
 
@@ -101,36 +97,27 @@ export default async function IncomePage({
             </tbody>
           </table>
         </div>
-        <p className="mt-3 text-xs text-muted">
-          Quarters are cut from the dates themselves, so they always add to the total.
-        </p>
       </Card>
 
       {unallocated.length > 0 && (
         <Card>
           <SectionTitle>{unallocated.length} rows need a destination</SectionTitle>
           <p className="text-sm text-muted">
-            These came across from the workbook without one, or with a split whose amounts
-            were never written down. Until they are assigned, their money is not counted in
-            any balance.
+            Their money is not counted in any balance until assigned.
           </p>
         </Card>
       )}
 
       <Card>
         <SectionTitle>Ledger</SectionTitle>
-        <p className="mb-4 text-sm text-muted">
-          Every field is editable here: click edit on any row to change its date, source,
-          amount, tax rate, note or destinations. Saving re-derives every balance.
-        </p>
+        <p className="mb-4 text-sm text-muted">Click edit on any row to change anything.</p>
         <IncomeLedger rows={rows} sources={sources.filter((s) => s.active)} />
       </Card>
 
       <Card>
         <SectionTitle>Sources</SectionTitle>
         <p className="mb-4 text-sm text-muted">
-          Add a client here and its tax rate and usual destination fill themselves in
-          whenever you log income from it.
+          A source remembers its tax rate and usual destination.
         </p>
         <SourceManager sources={sources} />
       </Card>

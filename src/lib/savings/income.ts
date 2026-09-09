@@ -265,3 +265,58 @@ export async function deleteSourceIfUnused(id: number): Promise<boolean> {
   await db.execute(sql`delete from sources where id = ${id}`);
   return true;
 }
+
+/** Monthly gross split into what was kept and what went to tax. */
+export async function getMonthlyIncome(
+  months = 14,
+): Promise<{ month: string; kept: number; tax: number; gross: number }[]> {
+  const result = await rows(sql`
+    select to_char(date_trunc('month', date), 'YYYY-MM') as month,
+           sum(gross) as gross,
+           sum(tax_withheld) as tax
+    from income
+    where date >= (date_trunc('month', current_date) - make_interval(months => ${months - 1}))
+    group by 1 order by 1
+  `);
+  return result.map((r) => {
+    const gross = num(r.gross);
+    const tax = num(r.tax);
+    return { month: String(r.month), gross, tax, kept: Math.round((gross - tax) * 100) / 100 };
+  });
+}
+
+/** Biggest earners, for a "where does the money come from" bar. */
+export async function getSourceTotals(
+  year?: number,
+): Promise<{ source: string; gross: number }[]> {
+  const result = await rows(sql`
+    select s.name as source, sum(i.gross) as gross
+    from income i join sources s on s.id = i.source_id
+    ${year ? sql`where extract(year from i.date) = ${year}` : sql``}
+    group by s.name order by sum(i.gross) desc
+  `);
+  return result.map((r) => ({ source: String(r.source), gross: num(r.gross) }));
+}
+
+/**
+ * Cumulative money put into savings, straight from the ledger.
+ *
+ * This is what the daily snapshot series cannot give until it has run for
+ * months: a real curve over the whole history. It deliberately counts
+ * allocations only, so money that merely passed through checking is excluded,
+ * and it is contributions rather than market value.
+ */
+export async function getCumulativeSaved(): Promise<{ date: string; total: number }[]> {
+  const result = await rows(sql`
+    with daily as (
+      select i.date, sum(a.amount) as amt
+      from allocations a
+      join income i on i.id = a.income_id
+      where a.bucket <> 'checking'
+      group by i.date
+    )
+    select date, sum(amt) over (order by date) as running
+    from daily order by date
+  `);
+  return result.map((r) => ({ date: String(r.date), total: num(r.running) }));
+}

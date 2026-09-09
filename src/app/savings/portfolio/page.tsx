@@ -11,6 +11,7 @@ import { pct, relativeTime, shares as fmtShares, signedUsd, usd } from "@/lib/sa
 import { Card, SectionTitle } from "@/components/savings/ui";
 import RefreshPrices from "@/components/savings/RefreshPrices";
 import TradeForm from "@/components/savings/TradeForm";
+import HoldingsBars from "@/components/savings/HoldingsBars";
 import TradeList from "@/components/savings/TradeList";
 import AdjustmentManager from "@/components/savings/AdjustmentManager";
 
@@ -32,6 +33,11 @@ export default async function PortfolioPage() {
           <RefreshPrices />
         </p>
       </div>
+
+      <Card>
+        <SectionTitle>Every position</SectionTitle>
+        <HoldingsBars data={p.holdings} />
+      </Card>
 
       {ACCOUNTS.map((account) => {
         const holdings = p.holdings.filter((h) => h.account === account);
@@ -124,17 +130,13 @@ export default async function PortfolioPage() {
             {p.negativeBuckets.map((b) => BUCKET_LABEL[b]).join(", ")} went negative.
           </p>
           <p className="mt-1 text-sm text-muted">
-            That means money left the bucket without a matching trade or allocation, or that
-            its earmarks exceed the balance. Log the missing movement as an adjustment.
+            Money left without a matching trade or allocation. Log it as an adjustment.
           </p>
         </Card>
       )}
 
       <Card>
         <SectionTitle>Log a trade</SectionTitle>
-        <p className="mb-4 text-sm text-muted">
-          A buy moves cash into shares in the same account, so both sides update at once.
-        </p>
         <TradeForm />
       </Card>
 
@@ -146,8 +148,7 @@ export default async function PortfolioPage() {
       <Card>
         <SectionTitle>Adjustments</SectionTitle>
         <p className="mb-4 text-sm text-muted">
-          For anything the ledger cannot work out on its own: HYSA interest, a fee, a tax
-          payment, or moving money between accounts.
+          Interest, fees, a tax payment, or moving money between accounts.
         </p>
         <AdjustmentManager adjustments={adjustments} />
       </Card>

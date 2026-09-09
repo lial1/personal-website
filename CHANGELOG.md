@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-09-09 (visuals)
+- `/savings` is charts-first now: allocation donut, income by month split into kept vs tax,
+  a saved-to-date curve built from the ledger, income by source, a tax-coverage comparison,
+  and every position on one scale. Prose cut throughout.
+- The public site's nav bar no longer renders on `/savings`; its links are anchors into the
+  one-pager and had nothing to scroll to. Savings nav is Home / Dashboard / Portfolio / Income.
+- Chart colours validated with the dataviz palette checker (all-pairs CVD separation,
+  chroma floor and 3:1 contrast against the card surface).
+
 ## 2026-09-09
 - Added a private, password-gated savings tracker at `/savings`, replacing the spreadsheet that preceded it.
 - The income ledger is now the single source of truth: balances are derived from it
