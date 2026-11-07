@@ -23,7 +23,7 @@ export const ACCOUNT_LABEL: Record<Account, string> = {
 export const BUCKET_LABEL: Record<Bucket, string> = {
   hysa_tax: "Tax set-aside",
   hysa_emergency: "Emergency fund",
-  hysa_excess: "Excess",
+  hysa_excess: "HYSA savings",
   brokerage_cash: "Brokerage cash",
   roth_cash: "Roth cash",
   coinbase_cash: "Coinbase cash",

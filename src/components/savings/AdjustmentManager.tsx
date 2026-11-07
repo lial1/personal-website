@@ -14,7 +14,13 @@ const today = () => new Date().toISOString().slice(0, 10);
  * Anything the ledger cannot infer: HYSA interest, fees, a tax payment, a transfer
  * between accounts, or a correction. Amounts are signed.
  */
-export default function AdjustmentManager({ adjustments }: { adjustments: AdjustmentRow[] }) {
+export default function AdjustmentManager({
+  adjustments,
+  showList = true,
+}: {
+  adjustments: AdjustmentRow[];
+  showList?: boolean;
+}) {
   const router = useRouter();
   const [date, setDate] = useState(today);
   const [bucket, setBucket] = useState<Bucket>("hysa_excess");
@@ -106,7 +112,7 @@ export default function AdjustmentManager({ adjustments }: { adjustments: Adjust
         Use a negative amount for money leaving a bucket, positive for money arriving.
       </p>
 
-      {adjustments.length > 0 && (
+      {showList && adjustments.length > 0 && (
         <div className="-mx-5 overflow-x-auto px-5">
           <table className="w-full min-w-[32rem] text-sm [&_td:not(:first-child)]:pl-4 [&_th:not(:first-child)]:pl-4">
             <thead>
