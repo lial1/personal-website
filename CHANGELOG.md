@@ -1,6 +1,8 @@
 # Changelog
 
 ## 2026-11-07
+- Added True Count (blackjack counting trainer) as the first project, linked to the live site
+  since its repo is private. Preview is a screenshot of the live table.
 - Main nav gets a "sign in" link to `/savings` (the proxy sends signed-out visitors to the login page).
   This reverses the 2026-09-09 choice to keep the section out of `SiteNav`, at Lia's request.
 - Removed the 2026 reading list section and its "extras" nav link.

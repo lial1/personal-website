@@ -6,6 +6,15 @@ import Image from "next/image";
 export default function Home() {
   const projects = [
     {
+      title: "True Count, Blackjack Counting Trainer",
+      summary:
+        "A Hi-Lo card counting trainer that deals random multi-deck shoes, checks the running and true count, and coaches the Illustrious 18 deviations. Checked against a 3 million hand simulation.",
+      tags: ["JavaScript", "Simulation", "Probability"],
+      link: "https://count-trainer-six.vercel.app",
+      image: "/project-count-trainer.png",
+      imageClassName: "object-left object-top",
+    },
+    {
       title: "Option Pricing & Stochastic Analysis",
       summary:
         "Monte Carlo framework to simulate downside scenarios and quantify tail risk across changing assumptions.",
