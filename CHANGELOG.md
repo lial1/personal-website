@@ -1,9 +1,11 @@
 # Changelog
 
 ## 2026-11-07
-- New `/savings/activity` page: one add box (income, investment, adjustment) on top, then every
-  month with each paycheck, the chips for where its money went, every trade and adjustment, and
-  month totals (earned, tax, invested). Editing and deleting still live on Income and Portfolio.
+- New `/savings/ledger` page (Ledger tab): one add box (income, investment, adjustment), then a
+  traditional ledger, Date / Description / In / Out / running Balance, newest first with month
+  dividers. Income comes in at gross, buys go out into investments, sells come back in,
+  adjustments are signed; Balance is total cash across every bucket. Editing and deleting still
+  live on Income and Portfolio.
 - The "Excess" bucket is labelled "HYSA savings": HYSA money that is not the tax set-aside or
   emergency fund. Only the label changed; the enum is still `hysa_excess`.
 - Added True Count (blackjack counting trainer) as the first project, linked to the live site

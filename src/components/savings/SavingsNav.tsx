@@ -6,7 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 const TABS = [
   { href: "/", label: "Home" },
   { href: "/savings", label: "Dashboard" },
-  { href: "/savings/activity", label: "Activity" },
+  { href: "/savings/ledger", label: "Ledger" },
   { href: "/savings/portfolio", label: "Portfolio" },
   { href: "/savings/income", label: "Income" },
 ];
