@@ -15,7 +15,7 @@ const body = Manrope({
 
 export const metadata: Metadata = {
   title: "Lia Li — Projects",
-  description: "Personal site with projects, about, and extras.",
+  description: "Personal site with projects and about.",
 };
 
 export default function RootLayout({

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-07
+- Main nav gets a "sign in" link to `/savings` (the proxy sends signed-out visitors to the login page).
+  This reverses the 2026-09-09 choice to keep the section out of `SiteNav`, at Lia's request.
+- Removed the 2026 reading list section and its "extras" nav link.
+- `/savings` navigation: the tab bar is sticky, Portfolio and Income get jump links to each section,
+  and dashboard account cards and chart titles click through to the matching page or section.
+
 ## 2026-09-09 (visuals)
 - `/savings` is charts-first now: allocation donut, income by month split into kept vs tax,
   a saved-to-date curve built from the ledger, income by source, a tax-coverage comparison,

@@ -304,60 +304,6 @@ export default function Home() {
         <div />
       </section>
 
-      <section id="extras" className="scroll-mt-[-8rem] space-y-6">
-        <div className="space-y-3">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted">
-            Extras
-          </p>
-          <h2 className="font-display text-3xl text-ink sm:text-4xl">
-            2026 Reading List
-          </h2>
-        </div>
-        <p className="text-[1rem] leading-7 text-muted">
-          A running list of what I’m reading this year.
-        </p>
-
-        <div className="space-y-8 border-t border-line pt-8">
-          <div className="space-y-3">
-            <h3 className="text-sm uppercase tracking-[0.3em] text-muted">
-              Read this year
-            </h3>
-            <ul className="space-y-2 text-base text-muted">
-              <li>Kafka on the Shore — Haruki Murakami</li>
-              <li>The Catcher in the Rye — J.D. Salinger</li>
-            </ul>
-          </div>
-
-          <div className="space-y-3 border-t border-line pt-6">
-            <h3 className="text-sm uppercase tracking-[0.3em] text-muted">
-              Currently reading
-            </h3>
-            <ul className="space-y-2 text-base text-muted">
-              <li>1984 — George Orwell</li>
-              <li>Crime and Punishment — Fyodor Dostoevsky</li>
-            </ul>
-          </div>
-
-          <div className="space-y-3 border-t border-line pt-6">
-            <h3 className="text-sm uppercase tracking-[0.3em] text-muted">
-              Up next
-            </h3>
-            <ul className="space-y-2 text-base text-muted">
-              <li>Norwegian Wood — Haruki Murakami</li>
-              <li>The Bell Jar — Sylvia Plath</li>
-              <li>The Alchemist — Paulo Coelho</li>
-              <li>Never Let Me Go — Kazuo Ishiguro</li>
-            </ul>
-          </div>
-        </div>
-
-        <p className="text-xs uppercase tracking-[0.3em] text-muted">
-          Last updated: Jan 2026
-        </p>
-
-        <div />
-      </section>
-
       <section id="contact" className="scroll-mt-[-10em]">
         <ContactSection />
         <footer className="mt-16 border-t border-line pt-10">

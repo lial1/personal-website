@@ -8,7 +8,7 @@ import {
   BUCKET_LABEL,
 } from "@/lib/savings/constants";
 import { pct, relativeTime, shares as fmtShares, signedUsd, usd } from "@/lib/savings/format";
-import { Card, SectionTitle } from "@/components/savings/ui";
+import { Card, JumpLinks, SectionTitle } from "@/components/savings/ui";
 import RefreshPrices from "@/components/savings/RefreshPrices";
 import TradeForm from "@/components/savings/TradeForm";
 import HoldingsBars from "@/components/savings/HoldingsBars";
@@ -34,7 +34,20 @@ export default async function PortfolioPage() {
         </p>
       </div>
 
-      <Card>
+      <JumpLinks
+        links={[
+          { id: "positions", label: "Positions" },
+          ...ACCOUNTS.filter((account) => {
+            const t = p.accounts.find((a) => a.account === account)?.total ?? 0;
+            return t !== 0 || p.holdings.some((h) => h.account === account);
+          }).map((account) => ({ id: `acct-${account}`, label: ACCOUNT_LABEL[account] })),
+          { id: "log-trade", label: "Log a trade" },
+          { id: "trades", label: "Trades" },
+          { id: "adjustments", label: "Adjustments" },
+        ]}
+      />
+
+      <Card id="positions">
         <SectionTitle>Every position</SectionTitle>
         <HoldingsBars data={p.holdings} />
       </Card>
@@ -46,7 +59,7 @@ export default async function PortfolioPage() {
         if (!holdings.length && cashBuckets.every((b) => p.buckets[b] === 0)) return null;
 
         return (
-          <Card key={account}>
+          <Card key={account} id={`acct-${account}`}>
             <div className="mb-4 flex items-center gap-2">
               <span
                 aria-hidden
@@ -135,17 +148,17 @@ export default async function PortfolioPage() {
         </Card>
       )}
 
-      <Card>
+      <Card id="log-trade">
         <SectionTitle>Log a trade</SectionTitle>
         <TradeForm />
       </Card>
 
-      <Card>
+      <Card id="trades">
         <SectionTitle>Recent trades</SectionTitle>
         <TradeList trades={trades} />
       </Card>
 
-      <Card>
+      <Card id="adjustments">
         <SectionTitle>Adjustments</SectionTitle>
         <p className="mb-4 text-sm text-muted">
           Interest, fees, a tax payment, or moving money between accounts.

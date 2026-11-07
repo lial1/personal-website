@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { getYearSummary, listAllSources, listIncome, listYears } from "@/lib/savings/income";
 import { pct, usd } from "@/lib/savings/format";
-import { Card, SectionTitle } from "@/components/savings/ui";
+import { Card, JumpLinks, SectionTitle } from "@/components/savings/ui";
 import IncomeForm from "@/components/savings/IncomeForm";
 import IncomeLedger from "@/components/savings/IncomeLedger";
 import SourceManager from "@/components/savings/SourceManager";
@@ -43,7 +43,16 @@ export default async function IncomePage({
         </div>
       </div>
 
-      <Card>
+      <JumpLinks
+        links={[
+          { id: "add", label: "Add income" },
+          { id: "quarters", label: "By quarter" },
+          { id: "ledger", label: "Ledger" },
+          { id: "sources", label: "Sources" },
+        ]}
+      />
+
+      <Card id="add">
         <SectionTitle>Add income</SectionTitle>
         <IncomeForm sources={sources.filter((s) => s.active)} />
       </Card>
@@ -67,7 +76,7 @@ export default async function IncomePage({
         </Card>
       </div>
 
-      <Card>
+      <Card id="quarters">
         <SectionTitle>{year} by quarter</SectionTitle>
         <div className="-mx-5 overflow-x-auto px-5">
           <table className="w-full min-w-[26rem] text-sm [&_td:not(:first-child)]:pl-4 [&_th:not(:first-child)]:pl-4">
@@ -108,13 +117,13 @@ export default async function IncomePage({
         </Card>
       )}
 
-      <Card>
+      <Card id="ledger">
         <SectionTitle>Ledger</SectionTitle>
         <p className="mb-4 text-sm text-muted">Click edit on any row to change anything.</p>
         <IncomeLedger rows={rows} sources={sources.filter((s) => s.active)} />
       </Card>
 
-      <Card>
+      <Card id="sources">
         <SectionTitle>Sources</SectionTitle>
         <p className="mb-4 text-sm text-muted">
           A source remembers its tax rate and usual destination.

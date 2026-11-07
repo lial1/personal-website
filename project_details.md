@@ -2,7 +2,7 @@
 
 ## Overview
 - Purpose: Personal website built with Next.js + React
-- Routes: `/` (projects), `/about`, `/extras`, `/savings` (private, gated)
+- Routes: `/` (about + projects one-pager), `/savings` (private, gated, linked as "sign in" in the nav)
 - Status: Projects/about content aligned with resume
 
 ## Stack
@@ -32,7 +32,7 @@
 
 ## Design Notes
 - Landing page is the projects list (vertical scroll).
-- Navigation mirrors the reference: about, projects, extras.
+- Navigation: about, projects, contact, sign in.
 - Content column is centered and narrower to match the reference.
 
 ## Decisions Log

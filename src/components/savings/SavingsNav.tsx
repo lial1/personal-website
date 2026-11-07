@@ -23,8 +23,8 @@ export default function SavingsNav() {
   }
 
   return (
-    <nav className="mb-8 flex items-center justify-between border-b border-line pb-3">
-      <div className="flex gap-5 text-sm">
+    <nav className="sticky top-0 z-40 -mx-3 mb-8 flex items-center justify-between border-b border-line bg-sand/90 px-3 py-3 backdrop-blur">
+      <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
         {TABS.map((t) => (
           <Link
             key={t.href}

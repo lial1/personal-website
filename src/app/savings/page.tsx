@@ -7,6 +7,7 @@ import {
 } from "@/lib/savings/income";
 import { ACCOUNT_COLOR, NET_WORTH_ACCOUNTS } from "@/lib/savings/constants";
 import { pct, relativeTime, signedUsd, usd } from "@/lib/savings/format";
+import Link from "next/link";
 import { Card, SectionTitle } from "@/components/savings/ui";
 import NetWorthTrend from "@/components/savings/NetWorthTrend";
 import AllocationDonut from "@/components/savings/AllocationDonut";
@@ -84,14 +85,22 @@ export default async function Dashboard() {
 
       {/* Where it sits */}
       <Card>
-        <SectionTitle>Where it sits</SectionTitle>
+        <SectionTitle>
+          <Link href="/savings/portfolio" className="nav-link">
+            Where it sits <span aria-hidden>&rarr;</span>
+          </Link>
+        </SectionTitle>
         <AllocationDonut data={accounts} />
       </Card>
 
       {/* Two charts side by side on wide screens */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
-          <SectionTitle>Income by month</SectionTitle>
+          <SectionTitle>
+            <Link href="/savings/income" className="nav-link">
+              Income by month <span aria-hidden>&rarr;</span>
+            </Link>
+          </SectionTitle>
           <IncomeByMonth data={monthly} />
         </Card>
         <Card>
@@ -103,20 +112,26 @@ export default async function Dashboard() {
       {/* Accounts */}
       <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
         {accounts.map((a) => (
-          <Card key={a.account}>
-            <div className="flex items-center gap-2">
-              <span
-                aria-hidden
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ background: ACCOUNT_COLOR[a.account] }}
-              />
-              <span className="text-sm text-ink">{a.label}</span>
-            </div>
-            <p className="mt-2 font-display text-xl text-ink">{usd(a.total)}</p>
-            <p className="mt-1 text-xs text-muted">
-              {a.dayChange !== 0 ? `${signedUsd(a.dayChange)} today` : pct(a.pct, 0)}
-            </p>
-          </Card>
+          <Link
+            key={a.account}
+            href={`/savings/portfolio#acct-${a.account}`}
+            className="block rounded-lg transition hover:opacity-80"
+          >
+            <Card>
+              <div className="flex items-center gap-2">
+                <span
+                  aria-hidden
+                  className="h-2.5 w-2.5 rounded-full"
+                  style={{ background: ACCOUNT_COLOR[a.account] }}
+                />
+                <span className="text-sm text-ink">{a.label}</span>
+              </div>
+              <p className="mt-2 font-display text-xl text-ink">{usd(a.total)}</p>
+              <p className="mt-1 text-xs text-muted">
+                {a.dayChange !== 0 ? `${signedUsd(a.dayChange)} today` : pct(a.pct, 0)}
+              </p>
+            </Card>
+          </Link>
         ))}
       </div>
 
@@ -126,14 +141,22 @@ export default async function Dashboard() {
           <TaxBar owed={taxOwed} covered={taxCovered} />
         </Card>
         <Card>
-          <SectionTitle>{year} by source</SectionTitle>
+          <SectionTitle>
+            <Link href="/savings/income#sources" className="nav-link">
+              {year} by source <span aria-hidden>&rarr;</span>
+            </Link>
+          </SectionTitle>
           <SourceBars data={sources} />
         </Card>
       </div>
 
       {/* This year */}
       <Card>
-        <SectionTitle>{year} so far</SectionTitle>
+        <SectionTitle>
+            <Link href="/savings/income#quarters" className="nav-link">
+              {year} so far <span aria-hidden>&rarr;</span>
+            </Link>
+          </SectionTitle>
         <dl className="grid grid-cols-3 gap-3">
           {[
             { label: "Earned", value: fy.gross },

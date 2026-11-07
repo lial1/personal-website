@@ -3,12 +3,17 @@ import type { ReactNode } from "react";
 export function Card({
   children,
   className = "",
+  id,
 }: {
   children: ReactNode;
   className?: string;
+  id?: string;
 }) {
   return (
-    <section className={`rounded-lg border border-line bg-card p-5 ${className}`}>
+    <section
+      id={id}
+      className={`scroll-mt-28 rounded-lg border border-line bg-card p-5 ${className}`}
+    >
       {children}
     </section>
   );
@@ -42,5 +47,18 @@ export function Chip({ children, color }: { children: ReactNode; color?: string 
       )}
       {children}
     </span>
+  );
+}
+
+/** Jump links to the sections of a long savings page. */
+export function JumpLinks({ links }: { links: { id: string; label: string }[] }) {
+  return (
+    <div className="flex flex-wrap gap-x-4 gap-y-2 text-xs uppercase tracking-wider">
+      {links.map((l) => (
+        <a key={l.id} href={`#${l.id}`} className="nav-link">
+          {l.label}
+        </a>
+      ))}
+    </div>
   );
 }

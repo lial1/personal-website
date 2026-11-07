@@ -1,12 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const links = [
   { href: "#about", label: "about", id: "about" },
   { href: "#projects", label: "projects", id: "projects" },
-  { href: "#extras", label: "extras", id: "extras" },
   { href: "#contact", label: "contact", id: "contact" },
 ];
 
@@ -155,6 +155,10 @@ export default function SiteNav() {
                 {link.label}
               </button>
             ))}
+            {/* The proxy sends a signed-out visitor to /savings/login. */}
+            <Link href="/savings" className="nav-link">
+              sign in
+            </Link>
           </div>
         </nav>
       </div>
