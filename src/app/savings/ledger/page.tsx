@@ -1,7 +1,7 @@
 import { listAdjustments, listTrades } from "@/lib/savings/balances";
 import { listAllSources, listIncome } from "@/lib/savings/income";
 import { ACCOUNT_LABEL, BUCKET_LABEL } from "@/lib/savings/constants";
-import { shares as fmtShares, shortDate, usd } from "@/lib/savings/format";
+import { shares as fmtShares, shortDate, signedUsd, usd } from "@/lib/savings/format";
 import { Card, SectionTitle } from "@/components/savings/ui";
 import AddPanel from "@/components/savings/AddPanel";
 
@@ -77,9 +77,6 @@ export default async function LedgerPage() {
   });
   ledger.reverse();
 
-  const totalIn = ledger.reduce((s, l) => s + Math.max(0, l.amount), 0);
-  const totalOut = ledger.reduce((s, l) => s + Math.max(0, -l.amount), 0);
-
   return (
     <div className="space-y-6">
       <h1 className="font-display text-2xl text-ink">Ledger</h1>
@@ -91,20 +88,19 @@ export default async function LedgerPage() {
 
       <Card>
         <div className="-mx-5 overflow-x-auto px-5">
-          <table className="w-full min-w-[40rem] text-sm [&_td:not(:first-child)]:pl-4 [&_th:not(:first-child)]:pl-4">
+          <table className="w-full min-w-[32rem] text-sm [&_td:not(:first-child)]:pl-4 [&_th:not(:first-child)]:pl-4">
             <thead>
               <tr className="border-b border-line text-xs uppercase tracking-wide text-offblack">
                 <th className="pb-2 text-left font-normal">Date</th>
                 <th className="pb-2 text-left font-normal">Description</th>
-                <th className="pb-2 text-right font-normal">In</th>
-                <th className="pb-2 text-right font-normal">Out</th>
+                <th className="pb-2 text-right font-normal">Amount</th>
                 <th className="pb-2 text-right font-normal">Balance</th>
               </tr>
             </thead>
             <tbody>
               {ledger.length === 0 && (
                 <tr>
-                  <td colSpan={5} className="py-4 text-muted">
+                  <td colSpan={4} className="py-4 text-muted">
                     Nothing logged yet.
                   </td>
                 </tr>
@@ -116,7 +112,7 @@ export default async function LedgerPage() {
                   newMonth && (
                     <tr key={`m-${month}`}>
                       <td
-                        colSpan={5}
+                        colSpan={4}
                         className="pb-1 pt-5 text-xs uppercase tracking-wider text-offblack"
                       >
                         {monthLabel(month)}
@@ -129,11 +125,12 @@ export default async function LedgerPage() {
                       {l.description}
                       {l.detail && <div className="text-xs text-muted">{l.detail}</div>}
                     </td>
-                    <td className="py-2 text-right tabular-nums text-ink">
-                      {l.amount > 0 ? usd(l.amount) : ""}
-                    </td>
-                    <td className="py-2 text-right tabular-nums text-muted-red">
-                      {l.amount < 0 ? usd(-l.amount) : ""}
+                    <td
+                      className={`py-2 text-right tabular-nums ${
+                        l.amount < 0 ? "text-muted-red" : "text-ink"
+                      }`}
+                    >
+                      {signedUsd(l.amount)}
                     </td>
                     <td className="py-2 text-right tabular-nums text-muted">{usd(l.balance)}</td>
                   </tr>,
@@ -143,11 +140,9 @@ export default async function LedgerPage() {
             {ledger.length > 0 && (
               <tfoot>
                 <tr className="font-medium">
-                  <td className="pt-3 text-ink" colSpan={2}>
-                    Total
+                  <td className="pt-3 text-ink" colSpan={3}>
+                    Balance
                   </td>
-                  <td className="pt-3 text-right tabular-nums text-ink">{usd(totalIn)}</td>
-                  <td className="pt-3 text-right tabular-nums text-muted-red">{usd(totalOut)}</td>
                   <td className="pt-3 text-right tabular-nums text-ink">{usd(running)}</td>
                 </tr>
               </tfoot>
