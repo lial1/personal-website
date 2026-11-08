@@ -11,6 +11,7 @@ export default function Home() {
         "A Hi-Lo card counting trainer that deals random multi-deck shoes, checks the running and true count, and coaches the Illustrious 18 deviations. Checked against a 3 million hand simulation.",
       tags: ["JavaScript", "Simulation", "Probability"],
       link: "https://count-trainer-six.vercel.app",
+      code: "https://github.com/lial1/count-trainer",
       image: "/project-count-trainer.png",
       imageClassName: "object-left object-top",
     },
@@ -295,7 +296,7 @@ export default function Home() {
                 <p className="max-w-2xl text-[1rem] leading-7 text-muted">
                   {project.summary}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap items-center gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
@@ -304,6 +305,16 @@ export default function Home() {
                       {tag}
                     </span>
                   ))}
+                  {project.code && (
+                    <a
+                      href={project.code}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="ml-1 text-xs font-medium uppercase tracking-[0.2em] text-muted underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-ink"
+                    >
+                      Code
+                    </a>
+                  )}
                 </div>
               </div>
             </article>

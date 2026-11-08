@@ -1,6 +1,7 @@
 # Changelog
 
 ## 2026-11-07
+- count-trainer repo is public now; its project card gets a "Code" link to GitHub.
 - New `/savings/ledger` page (Ledger tab): one add box (income, investment, adjustment), then a
   traditional ledger, Date / Description / signed Amount (+ in, - out) / running Balance, newest first with month
   dividers. Income comes in at gross, buys go out into investments, sells come back in,
